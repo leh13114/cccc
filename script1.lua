@@ -2293,9 +2293,7 @@ end)
                                     Hop("Mob Health Stuck")
                                 end
 
-                                if (MonResult:GetAttribute("FailureCount") or 0) > 5 then
-                                    Hop("Failed to attack")
-                                end
+                               
                                 if
                                     Count >= CombatController.MAX_ATTACK_DURATION and
                                         MobHumanoid.Health - MobHumanoid.MaxHealth == 0
@@ -2365,11 +2363,7 @@ end)
                         end
                     end
                 elseif not NearbyHit then
-                    if (os.time() - LastFound) > 200 then
-                        alert("Cyndral", "Error while farming, rejoin")
-                        Hop("Attack time is bigger than 180, hop")
-                        return
-                    end
+                   
 
                     local Region = ScriptStorage.MobRegions[Child]
 
